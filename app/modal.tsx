@@ -1,29 +1,28 @@
-import { Link } from 'expo-router';
-import { StyleSheet } from 'react-native';
+// app/(tabs)/home.tsx
+import { useAuth } from "@/components/contexts/AuthContext";
+import React from "react";
+import { SafeAreaView, StyleSheet, Text, View } from "react-native";
 
-import { ThemedText } from '@/components/themed-text';
-import { ThemedView } from '@/components/themed-view';
+export default function HomeScreen() {
+  const { user } = useAuth();
 
-export default function ModalScreen() {
   return (
-    <ThemedView style={styles.container}>
-      <ThemedText type="title">This is a modal</ThemedText>
-      <Link href="/" dismissTo style={styles.link}>
-        <ThemedText type="link">Go to home screen</ThemedText>
-      </Link>
-    </ThemedView>
+    <SafeAreaView style={styles.container}>
+      <View style={styles.centered}>
+        <Text style={styles.h1}>Home</Text>
+        <Text style={styles.muted}>Hello, {user?.email ?? "friend"} 👋</Text>
+      </View>
+    </SafeAreaView>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-    padding: 20,
+    backgroundColor: "#fff",
+    paddingHorizontal: 20,
   },
-  link: {
-    marginTop: 15,
-    paddingVertical: 15,
-  },
+  centered: { flex: 1, justifyContent: "center", alignItems: "center" },
+  h1: { fontSize: 28, fontWeight: "700", marginBottom: 8 },
+  muted: { color: "#666", marginTop: 6 },
 });
