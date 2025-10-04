@@ -1,6 +1,7 @@
 // app/_layout.tsx
 import { AuthProvider, useAuth } from "@/components/contexts/AuthContext";
 import { Slot, useRouter, useSegments } from "expo-router";
+import { StatusBar } from "expo-status-bar";
 import { useEffect } from "react";
 import { ActivityIndicator, SafeAreaView, StyleSheet } from "react-native";
 
@@ -20,7 +21,7 @@ function RootLayoutNav() {
       router.replace("/(tabs)/home");
     } else if (status === "signed-out" && inAppGroup) {
       // Redirect to landing if signed out
-      router.replace("/(auth)/landing");
+      router.replace("/");
     }
   }, [status, segments, router]);
 
@@ -32,7 +33,12 @@ function RootLayoutNav() {
     );
   }
 
-  return <Slot />;
+  return (
+    <>
+      <StatusBar style="dark" backgroundColor="transparent" />
+      <Slot />
+    </>
+  );
 }
 
 export default function RootLayout() {

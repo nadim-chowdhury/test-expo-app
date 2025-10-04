@@ -1,13 +1,13 @@
 // app/(tabs)/home.tsx
 import { useAuth } from "@/components/contexts/AuthContext";
 import React from "react";
-import { 
-  SafeAreaView, 
-  StyleSheet, 
-  Text, 
-  View, 
+import {
+  SafeAreaView,
   ScrollView,
+  StyleSheet,
+  Text,
   TouchableOpacity,
+  View,
 } from "react-native";
 
 export default function HomeScreen() {
@@ -34,7 +34,7 @@ export default function HomeScreen() {
 
   return (
     <SafeAreaView style={styles.container}>
-      <ScrollView 
+      <ScrollView
         style={styles.scrollView}
         showsVerticalScrollIndicator={false}
       >
@@ -72,8 +72,8 @@ export default function HomeScreen() {
           <Text style={styles.sectionTitle}>Quick Actions</Text>
           <View style={styles.actionsGrid}>
             {quickActions.map((action, index) => (
-              <TouchableOpacity 
-                key={index} 
+              <TouchableOpacity
+                key={index}
                 style={styles.actionCard}
                 activeOpacity={0.7}
               >
@@ -95,8 +95,8 @@ export default function HomeScreen() {
           </View>
           <View style={styles.activityContainer}>
             {recentActivity.map((activity, index) => (
-              <TouchableOpacity 
-                key={index} 
+              <TouchableOpacity
+                key={index}
                 style={styles.activityItem}
                 activeOpacity={0.7}
               >
@@ -105,14 +105,20 @@ export default function HomeScreen() {
                   <Text style={styles.activityTitle}>{activity.title}</Text>
                   <Text style={styles.activityTime}>{activity.time}</Text>
                 </View>
-                <View style={[
-                  styles.activityStatus,
-                  activity.status === "completed" && styles.activityStatusCompleted
-                ]}>
-                  <Text style={[
-                    styles.activityStatusText,
-                    activity.status === "completed" && styles.activityStatusTextCompleted
-                  ]}>
+                <View
+                  style={[
+                    styles.activityStatus,
+                    activity.status === "completed" &&
+                      styles.activityStatusCompleted,
+                  ]}
+                >
+                  <Text
+                    style={[
+                      styles.activityStatusText,
+                      activity.status === "completed" &&
+                        styles.activityStatusTextCompleted,
+                    ]}
+                  >
                     {activity.status === "completed" ? "Done" : "Active"}
                   </Text>
                 </View>
